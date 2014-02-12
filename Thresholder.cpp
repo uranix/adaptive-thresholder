@@ -4,7 +4,14 @@
 #include <stdint.h>
 #include <cassert>
 #include <cstring>
-#include <omp.h>
+
+#ifdef USE_OMP
+# include <omp.h>
+#else
+int omp_get_thread_num() {
+	return 0;
+}
+#endif
 
 using namespace std;
 using namespace Magick;
